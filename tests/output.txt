@@ -1,0 +1,520 @@
+.data
+.align 2
+str_label_0: .asciiz "True"
+str_label_1: .asciiz "False"
+
+.text
+j main
+main:
+# Prologue for function: main
+	# Saving temporary registers.
+
+	sw $t0, 0($sp)
+	addi $sp, $sp, -4
+	sw $t1, 0($sp)
+	addi $sp, $sp, -4
+	sw $t2, 0($sp)
+	addi $sp, $sp, -4
+	sw $t3, 0($sp)
+	addi $sp, $sp, -4
+	sw $t4, 0($sp)
+	addi $sp, $sp, -4
+	sw $t5, 0($sp)
+	addi $sp, $sp, -4
+	sw $t6, 0($sp)
+	addi $sp, $sp, -4
+	sw $t7, 0($sp)
+	addi $sp, $sp, -4
+	sw $s0, 0($sp)
+	addi $sp, $sp, -4
+	sw $s1, 0($sp)
+	addi $sp, $sp, -4
+	sw $s2, 0($sp)
+	addi $sp, $sp, -4
+	sw $s3, 0($sp)
+	addi $sp, $sp, -4
+	sw $s4, 0($sp)
+	addi $sp, $sp, -4
+	sw $s5, 0($sp)
+	addi $sp, $sp, -4
+	sw $s6, 0($sp)
+	addi $sp, $sp, -4
+	sw $s7, 0($sp)
+	addi $sp, $sp, -4
+	sw $t8, 0($sp)
+	addi $sp, $sp, -4
+	sw $t9, 0($sp)
+	addi $sp, $sp, -4
+
+	# Done saving temporary registers.
+
+	sw $fp, 0($sp) # Saving old $fp.
+	addi $sp, $sp, -4 # Decrement $sp to prepare it for new $fp.
+	move $fp, $sp # Set current $fp to $sp and start enter the callee.
+# END of Prologue for function: main
+
+# Entering block for function: main
+	addi $sp, $sp, -4 # Allocate stack space for local variable n
+
+	li $t9, 1
+	sw $t9, 0($fp) # Store register for local variable n
+	lw $t9, 0($fp) # Loaded local variable n into register.
+
+	beq $t9, $0, else_0
+
+
+	la $t8, str_label_0
+	sw $t8, 0($sp) # Store the argument on the stack.
+	addi $sp, $sp, -4 # Prepare stack for another argument
+
+	sw $ra, 0($sp) # Save return address.
+	addi $sp, $sp, -4 # Prepare stack to enter callee.
+	jal print_s # Jump to callee.
+	lw $ra, 4($sp) # Reset the $ra.
+	addi $sp, $sp, 8 # Pop the arguments pushed on the stack.
+
+	j if_continue_0
+else_0:
+
+
+	la $t8, str_label_1
+	sw $t8, 0($sp) # Store the argument on the stack.
+	addi $sp, $sp, -4 # Prepare stack for another argument
+
+	sw $ra, 0($sp) # Save return address.
+	addi $sp, $sp, -4 # Prepare stack to enter callee.
+	jal print_s # Jump to callee.
+	lw $ra, 4($sp) # Reset the $ra.
+	addi $sp, $sp, 8 # Pop the arguments pushed on the stack.
+
+if_continue_0:
+
+# Leaving block for function: main
+
+# Epilogue for function: main
+	li $v0, 10
+	syscall
+
+# END of Epilogue for function: main
+
+print_c:
+# Prologue for function: print_c
+	# Saving temporary registers.
+
+	sw $t0, 0($sp)
+	addi $sp, $sp, -4
+	sw $t1, 0($sp)
+	addi $sp, $sp, -4
+	sw $t2, 0($sp)
+	addi $sp, $sp, -4
+	sw $t3, 0($sp)
+	addi $sp, $sp, -4
+	sw $t4, 0($sp)
+	addi $sp, $sp, -4
+	sw $t5, 0($sp)
+	addi $sp, $sp, -4
+	sw $t6, 0($sp)
+	addi $sp, $sp, -4
+	sw $t7, 0($sp)
+	addi $sp, $sp, -4
+	sw $s0, 0($sp)
+	addi $sp, $sp, -4
+	sw $s1, 0($sp)
+	addi $sp, $sp, -4
+	sw $s2, 0($sp)
+	addi $sp, $sp, -4
+	sw $s3, 0($sp)
+	addi $sp, $sp, -4
+	sw $s4, 0($sp)
+	addi $sp, $sp, -4
+	sw $s5, 0($sp)
+	addi $sp, $sp, -4
+	sw $s6, 0($sp)
+	addi $sp, $sp, -4
+	sw $s7, 0($sp)
+	addi $sp, $sp, -4
+	sw $t8, 0($sp)
+	addi $sp, $sp, -4
+	sw $t9, 0($sp)
+	addi $sp, $sp, -4
+
+	# Done saving temporary registers.
+
+	sw $fp, 0($sp) # Saving old $fp.
+	addi $sp, $sp, -4 # Decrement $sp to prepare it for new $fp.
+	move $fp, $sp # Set current $fp to $sp and start enter the callee.
+# END of Prologue for function: print_c
+
+# Entering block for function: print_c
+	lw $a0, 84($fp)
+	li $v0, 11
+	syscall
+# Leaving block for function: print_c
+
+# Epilogue for function: print_c
+return_0:
+	# Restoring temporary registers.
+
+	 lw $t0, 76($fp)
+	 lw $t1, 72($fp)
+	 lw $t2, 68($fp)
+	 lw $t3, 64($fp)
+	 lw $t4, 60($fp)
+	 lw $t5, 56($fp)
+	 lw $t6, 52($fp)
+	 lw $t7, 48($fp)
+	 lw $s0, 44($fp)
+	 lw $s1, 40($fp)
+	 lw $s2, 36($fp)
+	 lw $s3, 32($fp)
+	 lw $s4, 28($fp)
+	 lw $s5, 24($fp)
+	 lw $s6, 20($fp)
+	 lw $s7, 16($fp)
+	 lw $t8, 12($fp)
+	 lw $t9, 8($fp)
+
+	# Done restoring temporary registers.
+
+	addi $sp, $fp, 76 # Popped temporary registers and olf $fp
+	lw $fp, 4($fp) # Reload previous function's $fp.
+	jr $ra # Jump back to the caller.
+# END of Epilogue for function: print_c
+
+print_s:
+# Prologue for function: print_s
+	# Saving temporary registers.
+
+	sw $t0, 0($sp)
+	addi $sp, $sp, -4
+	sw $t1, 0($sp)
+	addi $sp, $sp, -4
+	sw $t2, 0($sp)
+	addi $sp, $sp, -4
+	sw $t3, 0($sp)
+	addi $sp, $sp, -4
+	sw $t4, 0($sp)
+	addi $sp, $sp, -4
+	sw $t5, 0($sp)
+	addi $sp, $sp, -4
+	sw $t6, 0($sp)
+	addi $sp, $sp, -4
+	sw $t7, 0($sp)
+	addi $sp, $sp, -4
+	sw $s0, 0($sp)
+	addi $sp, $sp, -4
+	sw $s1, 0($sp)
+	addi $sp, $sp, -4
+	sw $s2, 0($sp)
+	addi $sp, $sp, -4
+	sw $s3, 0($sp)
+	addi $sp, $sp, -4
+	sw $s4, 0($sp)
+	addi $sp, $sp, -4
+	sw $s5, 0($sp)
+	addi $sp, $sp, -4
+	sw $s6, 0($sp)
+	addi $sp, $sp, -4
+	sw $s7, 0($sp)
+	addi $sp, $sp, -4
+	sw $t8, 0($sp)
+	addi $sp, $sp, -4
+	sw $t9, 0($sp)
+	addi $sp, $sp, -4
+
+	# Done saving temporary registers.
+
+	sw $fp, 0($sp) # Saving old $fp.
+	addi $sp, $sp, -4 # Decrement $sp to prepare it for new $fp.
+	move $fp, $sp # Set current $fp to $sp and start enter the callee.
+# END of Prologue for function: print_s
+
+# Entering block for function: print_s
+	lw $a0, 84($fp)
+	li $v0, 4
+	syscall
+# Leaving block for function: print_s
+
+# Epilogue for function: print_s
+return_1:
+	# Restoring temporary registers.
+
+	 lw $t0, 76($fp)
+	 lw $t1, 72($fp)
+	 lw $t2, 68($fp)
+	 lw $t3, 64($fp)
+	 lw $t4, 60($fp)
+	 lw $t5, 56($fp)
+	 lw $t6, 52($fp)
+	 lw $t7, 48($fp)
+	 lw $s0, 44($fp)
+	 lw $s1, 40($fp)
+	 lw $s2, 36($fp)
+	 lw $s3, 32($fp)
+	 lw $s4, 28($fp)
+	 lw $s5, 24($fp)
+	 lw $s6, 20($fp)
+	 lw $s7, 16($fp)
+	 lw $t8, 12($fp)
+	 lw $t9, 8($fp)
+
+	# Done restoring temporary registers.
+
+	addi $sp, $fp, 76 # Popped temporary registers and olf $fp
+	lw $fp, 4($fp) # Reload previous function's $fp.
+	jr $ra # Jump back to the caller.
+# END of Epilogue for function: print_s
+
+print_i:
+# Prologue for function: print_i
+	# Saving temporary registers.
+
+	sw $t0, 0($sp)
+	addi $sp, $sp, -4
+	sw $t1, 0($sp)
+	addi $sp, $sp, -4
+	sw $t2, 0($sp)
+	addi $sp, $sp, -4
+	sw $t3, 0($sp)
+	addi $sp, $sp, -4
+	sw $t4, 0($sp)
+	addi $sp, $sp, -4
+	sw $t5, 0($sp)
+	addi $sp, $sp, -4
+	sw $t6, 0($sp)
+	addi $sp, $sp, -4
+	sw $t7, 0($sp)
+	addi $sp, $sp, -4
+	sw $s0, 0($sp)
+	addi $sp, $sp, -4
+	sw $s1, 0($sp)
+	addi $sp, $sp, -4
+	sw $s2, 0($sp)
+	addi $sp, $sp, -4
+	sw $s3, 0($sp)
+	addi $sp, $sp, -4
+	sw $s4, 0($sp)
+	addi $sp, $sp, -4
+	sw $s5, 0($sp)
+	addi $sp, $sp, -4
+	sw $s6, 0($sp)
+	addi $sp, $sp, -4
+	sw $s7, 0($sp)
+	addi $sp, $sp, -4
+	sw $t8, 0($sp)
+	addi $sp, $sp, -4
+	sw $t9, 0($sp)
+	addi $sp, $sp, -4
+
+	# Done saving temporary registers.
+
+	sw $fp, 0($sp) # Saving old $fp.
+	addi $sp, $sp, -4 # Decrement $sp to prepare it for new $fp.
+	move $fp, $sp # Set current $fp to $sp and start enter the callee.
+# END of Prologue for function: print_i
+
+# Entering block for function: print_i
+	lw $a0, 84($fp)
+	li $v0, 1
+	syscall
+# Leaving block for function: print_i
+
+# Epilogue for function: print_i
+return_2:
+	# Restoring temporary registers.
+
+	 lw $t0, 76($fp)
+	 lw $t1, 72($fp)
+	 lw $t2, 68($fp)
+	 lw $t3, 64($fp)
+	 lw $t4, 60($fp)
+	 lw $t5, 56($fp)
+	 lw $t6, 52($fp)
+	 lw $t7, 48($fp)
+	 lw $s0, 44($fp)
+	 lw $s1, 40($fp)
+	 lw $s2, 36($fp)
+	 lw $s3, 32($fp)
+	 lw $s4, 28($fp)
+	 lw $s5, 24($fp)
+	 lw $s6, 20($fp)
+	 lw $s7, 16($fp)
+	 lw $t8, 12($fp)
+	 lw $t9, 8($fp)
+
+	# Done restoring temporary registers.
+
+	addi $sp, $fp, 76 # Popped temporary registers and olf $fp
+	lw $fp, 4($fp) # Reload previous function's $fp.
+	jr $ra # Jump back to the caller.
+# END of Epilogue for function: print_i
+
+read_i:
+# Prologue for function: read_i
+	# Saving temporary registers.
+
+	sw $t0, 0($sp)
+	addi $sp, $sp, -4
+	sw $t1, 0($sp)
+	addi $sp, $sp, -4
+	sw $t2, 0($sp)
+	addi $sp, $sp, -4
+	sw $t3, 0($sp)
+	addi $sp, $sp, -4
+	sw $t4, 0($sp)
+	addi $sp, $sp, -4
+	sw $t5, 0($sp)
+	addi $sp, $sp, -4
+	sw $t6, 0($sp)
+	addi $sp, $sp, -4
+	sw $t7, 0($sp)
+	addi $sp, $sp, -4
+	sw $s0, 0($sp)
+	addi $sp, $sp, -4
+	sw $s1, 0($sp)
+	addi $sp, $sp, -4
+	sw $s2, 0($sp)
+	addi $sp, $sp, -4
+	sw $s3, 0($sp)
+	addi $sp, $sp, -4
+	sw $s4, 0($sp)
+	addi $sp, $sp, -4
+	sw $s5, 0($sp)
+	addi $sp, $sp, -4
+	sw $s6, 0($sp)
+	addi $sp, $sp, -4
+	sw $s7, 0($sp)
+	addi $sp, $sp, -4
+	sw $t8, 0($sp)
+	addi $sp, $sp, -4
+	sw $t9, 0($sp)
+	addi $sp, $sp, -4
+
+	# Done saving temporary registers.
+
+	sw $fp, 0($sp) # Saving old $fp.
+	addi $sp, $sp, -4 # Decrement $sp to prepare it for new $fp.
+	move $fp, $sp # Set current $fp to $sp and start enter the callee.
+# END of Prologue for function: read_i
+
+# Entering block for function: read_i
+	lw $a0, 84($fp)
+	li $v0, 5
+	syscall
+# Leaving block for function: read_i
+
+# Epilogue for function: read_i
+return_3:
+	# Restoring temporary registers.
+
+	 lw $t0, 76($fp)
+	 lw $t1, 72($fp)
+	 lw $t2, 68($fp)
+	 lw $t3, 64($fp)
+	 lw $t4, 60($fp)
+	 lw $t5, 56($fp)
+	 lw $t6, 52($fp)
+	 lw $t7, 48($fp)
+	 lw $s0, 44($fp)
+	 lw $s1, 40($fp)
+	 lw $s2, 36($fp)
+	 lw $s3, 32($fp)
+	 lw $s4, 28($fp)
+	 lw $s5, 24($fp)
+	 lw $s6, 20($fp)
+	 lw $s7, 16($fp)
+	 lw $t8, 12($fp)
+	 lw $t9, 8($fp)
+
+	# Done restoring temporary registers.
+
+	addi $sp, $fp, 76 # Popped temporary registers and olf $fp
+	lw $fp, 4($fp) # Reload previous function's $fp.
+	jr $ra # Jump back to the caller.
+# END of Epilogue for function: read_i
+
+read_c:
+# Prologue for function: read_c
+	# Saving temporary registers.
+
+	sw $t0, 0($sp)
+	addi $sp, $sp, -4
+	sw $t1, 0($sp)
+	addi $sp, $sp, -4
+	sw $t2, 0($sp)
+	addi $sp, $sp, -4
+	sw $t3, 0($sp)
+	addi $sp, $sp, -4
+	sw $t4, 0($sp)
+	addi $sp, $sp, -4
+	sw $t5, 0($sp)
+	addi $sp, $sp, -4
+	sw $t6, 0($sp)
+	addi $sp, $sp, -4
+	sw $t7, 0($sp)
+	addi $sp, $sp, -4
+	sw $s0, 0($sp)
+	addi $sp, $sp, -4
+	sw $s1, 0($sp)
+	addi $sp, $sp, -4
+	sw $s2, 0($sp)
+	addi $sp, $sp, -4
+	sw $s3, 0($sp)
+	addi $sp, $sp, -4
+	sw $s4, 0($sp)
+	addi $sp, $sp, -4
+	sw $s5, 0($sp)
+	addi $sp, $sp, -4
+	sw $s6, 0($sp)
+	addi $sp, $sp, -4
+	sw $s7, 0($sp)
+	addi $sp, $sp, -4
+	sw $t8, 0($sp)
+	addi $sp, $sp, -4
+	sw $t9, 0($sp)
+	addi $sp, $sp, -4
+
+	# Done saving temporary registers.
+
+	sw $fp, 0($sp) # Saving old $fp.
+	addi $sp, $sp, -4 # Decrement $sp to prepare it for new $fp.
+	move $fp, $sp # Set current $fp to $sp and start enter the callee.
+# END of Prologue for function: read_c
+
+# Entering block for function: read_c
+	lw $a0, 84($fp)
+	li $v0, 12
+	syscall
+# Leaving block for function: read_c
+
+# Epilogue for function: read_c
+return_4:
+	# Restoring temporary registers.
+
+	 lw $t0, 76($fp)
+	 lw $t1, 72($fp)
+	 lw $t2, 68($fp)
+	 lw $t3, 64($fp)
+	 lw $t4, 60($fp)
+	 lw $t5, 56($fp)
+	 lw $t6, 52($fp)
+	 lw $t7, 48($fp)
+	 lw $s0, 44($fp)
+	 lw $s1, 40($fp)
+	 lw $s2, 36($fp)
+	 lw $s3, 32($fp)
+	 lw $s4, 28($fp)
+	 lw $s5, 24($fp)
+	 lw $s6, 20($fp)
+	 lw $s7, 16($fp)
+	 lw $t8, 12($fp)
+	 lw $t9, 8($fp)
+
+	# Done restoring temporary registers.
+
+	addi $sp, $fp, 76 # Popped temporary registers and olf $fp
+	lw $fp, 4($fp) # Reload previous function's $fp.
+	jr $ra # Jump back to the caller.
+# END of Epilogue for function: read_c
+
+
