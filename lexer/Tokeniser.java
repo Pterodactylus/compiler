@@ -12,7 +12,7 @@ public class Tokeniser {
 
     private int error = 0;
     public int getErrorCount() {
-	return this.error;
+    return this.error;
     }
 
     public Tokeniser(Scanner scanner) {
@@ -21,7 +21,7 @@ public class Tokeniser {
 
     private void error(char c, int line, int col) {
         System.out.println("Lexing error: unrecognised character ("+c+") at "+line+":"+col);
-	    error++;
+    error++;
     }
 
 
@@ -40,6 +40,7 @@ public class Tokeniser {
         }
         return result;
     }
+
 
     private Token next() throws IOException {
 
@@ -114,7 +115,7 @@ public class Tokeniser {
          * Identifiers, types and keywords.
          */
 
-        if (Character.isLetter(c)) {
+        if (Character.isLetter(c) || c == '_') {
             StringBuilder builtStr = new StringBuilder();
             builtStr.append(c);
             c = scanner.peek();
@@ -204,9 +205,8 @@ public class Tokeniser {
         if (c == '#') {
             StringBuilder builtInclude = new StringBuilder();
             builtInclude.append(c);
-            scanner.next();
             c = scanner.peek();
-            while (!Character.isWhitespace(c)) {
+            while (Character.isLetter(c)) {
                 builtInclude.append(c);
                 scanner.next();
                 c = scanner.peek();
@@ -216,6 +216,8 @@ public class Tokeniser {
             if (result.equals("#include")) {
                 return new Token(TokenClass.INCLUDE, "#include", line, column);
             }
+
+            error(c, line, column);
 
             return new Token(TokenClass.INVALID, line, column);
         }
@@ -227,7 +229,6 @@ public class Tokeniser {
         if (Character.isDigit(c)) {
             StringBuilder builtInteger = new StringBuilder();
             builtInteger.append(c);
-            scanner.next();
             c = scanner.peek();
             while (Character.isDigit(c)) {
                 builtInteger.append(c);
@@ -253,7 +254,29 @@ public class Tokeniser {
                     if (isNonLetterEscapeChar(c)) {
                         builtStr.append(c);
                     } else if (isLetterEscapeChar(c)) {
-                        builtStr.append("\\" + c);
+                        String specialEscpaeChar;
+                        switch (c) {
+                            case 'n':
+                                specialEscpaeChar = "\\n";
+                                break;
+                            case 'f':
+                                specialEscpaeChar = "\\f";
+                                break;
+                            case 'r':
+                                specialEscpaeChar = "\\r";
+                                break;
+                            case 'b':
+                                specialEscpaeChar = "\\b";
+                                break;
+                            case 't':
+                                specialEscpaeChar = "\\t";
+                                break;
+                            default:
+                                error(c, line, column);
+                                specialEscpaeChar = "+";
+                                break;
+                        }
+                        builtStr.append(specialEscpaeChar);
                     } else {
                         error(c, line, column);
                         return new Token(TokenClass.INVALID, line, column);
@@ -285,14 +308,36 @@ public class Tokeniser {
                 if (isNonLetterEscapeChar(c)) {
                     builtChar.append(c);
                 } else if (isLetterEscapeChar(c)) {
-                    builtChar.append("\\" + c);
+                    char specialEscpaeChar;
+                    switch (c) {
+                        case 'n':
+                            specialEscpaeChar = '\n';
+                            break;
+                        case 'f':
+                            specialEscpaeChar = '\f';
+                            break;
+                        case 'r':
+                            specialEscpaeChar = '\r';
+                            break;
+                        case 'b':
+                            specialEscpaeChar = '\b';
+                            break;
+                        case 't':
+                            specialEscpaeChar = '\t';
+                            break;
+                        default:
+                            error(c, line, column);
+                            specialEscpaeChar = '+';
+                            break;
+                    }
+                    builtChar.append(specialEscpaeChar);
                 } else {
                     error(c, line, column);
                     return new Token(TokenClass.INVALID, line, column);
                 }
+            } else {
+                builtChar.append(c);
             }
-
-            builtChar.append(c);
 
             scanner.next();
             c = scanner.peek();
