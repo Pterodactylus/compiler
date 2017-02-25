@@ -69,8 +69,6 @@ public class TypeCheckVisitor extends BaseSemanticVisitor<Type> {
 		// Initialize type environment.
 		currentFunctionReturnType = null;
 
-		System.out.println("TYPECHECKING...");
-
 		for (StructType st : p.structTypes) {
 			st.accept(this);
 		}
@@ -97,8 +95,6 @@ public class TypeCheckVisitor extends BaseSemanticVisitor<Type> {
 		p.funDecls.add(print_i_decl);
 		p.funDecls.add(read_i_decl);
 		p.funDecls.add(read_c_decl);
-
-		System.out.println("================================================");
 
 		return null;
 	}
@@ -164,9 +160,6 @@ public class TypeCheckVisitor extends BaseSemanticVisitor<Type> {
 			return null;
 		}
 
-		System.out.println("Funcall args" + fce.functionArgsExprs.size());
-		System.out.println("Funtion: " + fce.functionName);
-		System.out.println("Func decl args" + fd.params.size());
 
 		// Make sure number of arguments in declaration and call match.
 		if (fce.functionArgsExprs.size() != fd.params.size()) {
@@ -284,8 +277,6 @@ public class TypeCheckVisitor extends BaseSemanticVisitor<Type> {
 
 		Type rhs = assignStmt.rhs.accept(this);
 
-//		System.out.println("LHS: " + lhs);
-//		System.out.println("RHS: " + rhs);
 
 		if (isSameType(lhs, rhs)) {
 			return null;
@@ -311,8 +302,7 @@ public class TypeCheckVisitor extends BaseSemanticVisitor<Type> {
 			return null;
 		}
 
-		System.out.println("RETURN TYPE: " + returnType.toString());
-		System.out.println("FUN RETURN TYPE: " + functionReturnType.toString());
+
 		if (isSameType(functionReturnType, returnType)) {
 			// Return statement type match function return type.
 			return functionReturnType;
@@ -388,8 +378,6 @@ public class TypeCheckVisitor extends BaseSemanticVisitor<Type> {
 			Type arrayType = ((ArrayType) toBeCasted).type;
 			if (cast instanceof PointerType) {
 				Type castType = ((PointerType) cast).type;
-				System.out.println(arrayType);
-				System.out.println(castType);
 				if (isSameType(castType, arrayType)) {
 					return new PointerType(castType);
 				} else {

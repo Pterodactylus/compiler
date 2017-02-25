@@ -89,7 +89,6 @@ public class NameAnalysisVisitor extends BaseSemanticVisitor<Void> {
 	@Override
 	public Void visitBlock(Block b) {
 
-        System.out.println("Entering a non-function block.");
 
         Scope oldScope = scope;
         scope = new Scope(oldScope);
@@ -189,7 +188,6 @@ public class NameAnalysisVisitor extends BaseSemanticVisitor<Void> {
 	@Override
 	public Void visitProgram(Program p) {
 
-		System.out.println("ANALYZING NAMES...");
 
 		// Initialize global scope. This is the root of all scopes.
 		scope = new Scope();

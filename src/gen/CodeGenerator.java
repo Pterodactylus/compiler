@@ -218,7 +218,6 @@ public class CodeGenerator implements ASTVisitor<Register> {
             }
         }
 
-        System.out.println("FUNCTION NAME: " + fd.name);
         textSegment.append("# Prologue for function: " + fd.name + "\n");
         generatePrologue();
         textSegment.append("# END of Prologue for function: " + fd.name + "\n\n");
@@ -278,23 +277,6 @@ public class CodeGenerator implements ASTVisitor<Register> {
         }
 
         textSegment.append("\n");
-
-//        pointOfReference = 76;
-//
-//        restoreRegisters();
-//
-//        System.out.println("M: " + m);
-//
-//        if (!m) {
-//
-//            // Second: Move $fp. Old $fp is located 4 bytes above current function $fp.
-//            textSegment.append("\tlw $fp, 4($fp)");
-//            textSegment.append(" # Reload previous function's $fp.\n");
-//
-//            // The callee then have to jump to a location where caller left. It is in $ra register.
-//            textSegment.append("\t" + "jr $ra");
-//            textSegment.append(" # Jump back to the caller.\n");
-//        }
 
 
         // Reset local variables offset tracker.
@@ -421,7 +403,6 @@ public class CodeGenerator implements ASTVisitor<Register> {
             textSegment.append(" # Prepare stack for another argument\n\n");
             resetBytes += 4;
             freeRegister(result);
-            System.out.println("Number of free registers left: " + freeRegs.size());
         }
 
         textSegment.append("\tsw $ra, 0($sp)");
@@ -433,7 +414,6 @@ public class CodeGenerator implements ASTVisitor<Register> {
 
         resetBytes += 4;
 
-        System.out.println(resetBytes);
 
         textSegment.append("\tjal " + fce.functionName);
         textSegment.append(" # Jump to callee.\n");
@@ -447,7 +427,6 @@ public class CodeGenerator implements ASTVisitor<Register> {
 
         // Move the result of function call from return register $vo.
         if (!fce.fd.name.startsWith("print")) {
-            System.out.println("Function: " + fce.fd.name + " type: " + fce.fd.type);
             result = getRegister();
             textSegment.append("\tmove " + result.toString() + ", " + "$v0");
             textSegment.append(" # Move function call result to a register to use by the caller.\n");
